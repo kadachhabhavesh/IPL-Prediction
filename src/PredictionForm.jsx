@@ -90,6 +90,10 @@ const PredictionForm = () => {
 
   return (
     <div className='w-full h-screen bg-teal-900 flex flex-col items-center justify-center'>
+       <h1 className='absolute bottom-0 right-0 text-xs flex flex-col text-white font-semibold px-5 py-3'>
+        <span>developed by</span>
+        <span>Kadachha Bhavesh</span>
+      </h1>
       <h1 className='text-white text-3xl font-bold'>IPL Match Win Prediction</h1>
       <form onSubmit={handleSubmit} className="w-2/3 mx-auto mt-8 p-3 bg-white rounded shadow-md flex flex-wrap justify-center">
         <div className="part1 w-full md:w-1/2 p-2">
