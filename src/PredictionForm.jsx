@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Pie, Chart } from 'react-chartjs-2';
 import PieChart from './Chart';
+import { toast } from 'react-hot-toast';
 
 const PredictionForm = () => {
   const [isModalOpen, setIsModalOpen] = useState();
   const [result, setResult] = useState(null)
   const [formData, setFormData] = useState({
-    "balls_left": 0,
+    "balls_left": null,
     "batting_team": "",
     "bowling_team": "",
     "city": "",
@@ -66,7 +67,7 @@ const PredictionForm = () => {
     }
     
     console.log(formData);
-    
+    const loadingToastId = toast.loading('Fetching data, please wait...');
     fetch('https://dm-project-rab6.onrender.com/predict', {
       method: 'POST',
       headers: {
@@ -82,6 +83,7 @@ const PredictionForm = () => {
           { teamName: formData.bowling_team, winPro: (100 - data.result).toFixed(2) },
         ])
         setIsModalOpen(true)
+        toast.dismiss(loadingToastId);
       })
       .catch(error => console.error('Error:', error));
   };
